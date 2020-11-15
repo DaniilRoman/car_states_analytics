@@ -89,6 +89,7 @@
 				<version>3.3.4</version>
 				<executions>
 					<execution>
+						<id>generate-public-server</id>
 						<goals>
 							<goal>generate</goal>
 						</goals>
@@ -97,11 +98,46 @@
 <!--							<configurationFile>${project.basedir}/openapi-generator-config.json</configurationFile>-->
 <!--							<ignoreFileOverride>${project.basedir}/.openapi-generator-ignore</ignoreFileOverride>-->
 							<generatorName>spring</generatorName>
+<!--							<generateSupportingFiles>false</generateSupportingFiles>-->
+
+							<validateSpec>false</validateSpec>
+							<configOptions>
+								<useTags>true</useTags>
+								<java8>true</java8>
+								<sourceFolder>/</sourceFolder>
+								<interfaceOnly>true</interfaceOnly>
+								<delegatePattern>true</delegatePattern>
+								<serviceInterface>true</serviceInterface>
+<!--								<skipOverwrite>true</skipOverwrite>-->
+							</configOptions>
+							<importMappings>
+								ObjectNode=com.fasterxml.jackson.databind.node.ObjectNode,
+							</importMappings>
+							<modelPackage>com.app.admin.api.model</modelPackage>
+							<apiPackage>com.app.admin.api</apiPackage>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
-
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>3.2.0</version>
+				<executions>
+					<execution>
+						<id>test</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>${basedir}/target/generated-sources/openapi</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
