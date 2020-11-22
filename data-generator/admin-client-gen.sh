@@ -1,0 +1,1 @@
+openapi-generator-cli generate -i ../admin/admin-be/src/main/resources/spec/admin.yml -g python -o ./client/admin
