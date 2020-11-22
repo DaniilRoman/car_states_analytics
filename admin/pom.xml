@@ -8,7 +8,6 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>admin</name>
 	<modules>
-		<module>analytics-client</module>
 		<module>admin-be</module>
 	</modules>
 

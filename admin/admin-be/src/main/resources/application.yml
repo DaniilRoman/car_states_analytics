@@ -18,3 +18,7 @@ spring:
       hibernate:
         format_sql: true
         ddl-auto: none
+
+
+analytics:
+  url: http://localhost:9091
