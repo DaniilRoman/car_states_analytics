@@ -1,4 +1,3 @@
-
 server:
   port: 9090
 
@@ -9,7 +8,7 @@ spring:
     active: development
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/botadmin
+    url: jdbc:postgresql://localhost:5432/admin
     username: postgres
     password: password
   jpa:
@@ -18,7 +17,13 @@ spring:
       hibernate:
         format_sql: true
         ddl-auto: none
-
+  liquibase:
+    change-log: classpath:liquibase/changelog.xml
 
 analytics:
   url: http://localhost:9091
+
+jwt:
+  token:
+    secret: adminapp
+    expired: ${TOKEN_EXPIRED:3600000}
