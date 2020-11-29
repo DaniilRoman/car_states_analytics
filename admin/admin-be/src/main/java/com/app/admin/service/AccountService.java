@@ -1,5 +1,6 @@
 package com.app.admin.service;
 
+import com.app.admin.api.model.AccountRequest;
 import com.app.admin.data.user.Account;
 import com.app.admin.data.user.Role;
 import com.app.admin.data.user.UserRole;
@@ -41,8 +42,13 @@ public class AccountService {
         return accountRepository.save(account);
     }
 
-    public Account create(Account account, UserRole role) {
-        accountRepository.findByUsername(account.getUsername()).orElseThrow(() -> new IllegalArgumentException("User " + account.getUsername() + " already exists!"));
+    public Account create(AccountRequest request, UserRole role) {
+        Account account = new Account();
+        account.setUsername(request.getUsername());
+        account.setPassword(request.getPassword());
+        accountRepository.findByUsername(account.getUsername())
+                .ifPresent((it) -> { throw new IllegalArgumentException("User " + account.getUsername() + " already exists!"); });
+
 
         Role userRole = roleRepository.getByName(role);
         account.setRoles(Collections.singleton(userRole));

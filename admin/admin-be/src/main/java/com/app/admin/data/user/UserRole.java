@@ -4,8 +4,9 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public enum UserRole {
-    ROLE_USER("USER"),
-    ROLE_ADMIN("ADMIN");
+    ROLE_USER,
+    ROLE_ADMIN;
 
-    public final String value;
+    public static String USER = "USER";
+    public static String ADMIN = "ADMIN";
 }

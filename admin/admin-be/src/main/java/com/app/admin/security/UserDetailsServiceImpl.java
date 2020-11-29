@@ -25,7 +25,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Account user = accountService.findByUsername(username);
 
-        var authorities = user.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getName().value)).collect(Collectors.toList());
+        var authorities = user.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getName().name())).collect(Collectors.toList());
 
         return User
                 .withUsername(username)

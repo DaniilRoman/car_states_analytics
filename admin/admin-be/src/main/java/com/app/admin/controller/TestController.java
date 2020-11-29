@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Controller
@@ -32,9 +33,9 @@ public class TestController implements TestApi {
     }
 
     @Override
-    public ResponseEntity<List<TestItem>> getTest(Long accountId) {
+    public ResponseEntity<List<TestItem>> getTest(UUID accountId) {
         return ResponseEntity.ok(
-                testApiClient.getTest(accountId).stream()
+                testApiClient.getTest(1L).stream()
                         .map(it -> new TestItem().id(it.getId()).values(it.getValues()))
                         .collect(Collectors.toList())
         );

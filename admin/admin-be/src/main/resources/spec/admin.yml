@@ -30,7 +30,134 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/TestItem'
-#      x-security-authority: PROJECTS_READ
+
+  # *******************************************************************************
+  #                           Accounts
+  # *******************************************************************************
+
+  /api/admin/v1/account:
+    get:
+      summary: get all accounts
+      operationId: getAccounts
+      tags:
+        - Account
+      responses:
+        '200':
+          description: List of accounts.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AccountResponse'
+
+  /api/admin/v1/account/sign_up:
+    post:
+      summary: Register new account accounts
+      operationId: singUp
+      tags:
+        - Account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountRequest'
+      responses:
+        '200':
+          description: Get specific accounts.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponse'
+
+  /api/admin/v1/account/admin:
+    post:
+      summary: Register new admin account accounts
+      operationId: createAdmin
+      tags:
+        - Account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountRequest'
+      responses:
+        '200':
+          description: Get specific accounts.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponse'
+
+  /api/admin/v1/account/login:
+    post:
+      summary: Login to account
+      operationId: login
+      tags:
+        - Account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountRequest'
+      responses:
+        '200':
+          description: Get specific accounts.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+
+  /api/admin/v1/account/{accountId}:
+    get:
+      summary: get account
+      operationId: getAccount
+      tags:
+        - Account
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+      responses:
+        '200':
+          description: Get specific accounts.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponse'
+
+    delete:
+      summary: delete account
+      operationId: deleteAccount
+      tags:
+        - Account
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+      responses:
+        '200':
+          description: Ok.
+
+    put:
+      summary: Update account
+      operationId: updateAccount
+      tags:
+        - Account
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountRequest'
+      responses:
+        '200':
+          description: Get specific accounts.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponse'
 
 
 
@@ -43,8 +170,8 @@ components:
       description: Account identifier
       required: true
       schema:
-        type: integer
-        format: int64
+        type: string
+        format: uuid
 
 
 
@@ -64,6 +191,56 @@ components:
           items:
             type: integer
             format: int64
+
+    AccountRequest:
+      type: object
+      required:
+        - username
+        - password
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+
+    AccountResponse:
+      type: object
+      required:
+        - id
+        - username
+      properties:
+        id:
+          type: string
+          format: uuid
+        username:
+          type: string
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+
+    TokenResponse:
+      type: object
+      required:
+        - accountId
+        - token
+        - username
+        - authorities
+      properties:
+        accountId:
+          type: string
+          format: uuid
+        token:
+          type: string
+        username:
+          type: string
+        authorities:
+          type: array
+          items:
+            type: string
+
 
 
 
