@@ -1,0 +1,6 @@
+**/src/main/**/target/
+**/.idea/
+**/client/
+**/node_modules
+**/venv/
+**/.mvn
