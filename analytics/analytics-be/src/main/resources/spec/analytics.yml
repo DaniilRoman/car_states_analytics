@@ -1,0 +1,76 @@
+openapi: 3.0.1
+
+info:
+  title: Analytics REST API
+  version: 0.0.1
+
+tags:
+  - name: Tests
+    description: The API provides methods for test.
+
+paths:
+  # *******************************************************************************
+  #                           Tests
+  # *******************************************************************************
+
+  /api/analytics/accounts/{accountId}/test:
+    get:
+      summary: test
+      operationId: getTest
+      tags:
+        - AnalyticsTest
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+      responses:
+        '200':
+          description: List of Test objects.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TestItem'
+#      x-security-authority: PROJECTS_READ
+
+
+
+
+components:
+  parameters:
+    accountId:
+      name: accountId
+      in: path
+      description: Account identifier
+      required: true
+      schema:
+        type: integer
+        format: int64
+
+
+
+  schemas:
+
+    TestItem:
+      type: object
+      required:
+        - id
+        - values
+      properties:
+        id:
+          type: string
+          format: uuid
+        values:
+          type: array
+          items:
+            type: integer
+            format: int64
+
+
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+
+security:
+  - bearerAuth: []
