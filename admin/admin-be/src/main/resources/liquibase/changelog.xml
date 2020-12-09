@@ -14,4 +14,12 @@
     <changeSet author="danroman17397@gmail.com" id="3_insert_roles">
         <sqlFile encoding="utf8" path="classpath:liquibase/sql/3_insert_roles.sql"/>
     </changeSet>
+
+    <changeSet author="olegka35@gmail.com" id="4_create_car_table">
+        <sqlFile encoding="utf8" path="classpath:liquibase/sql/4_create_car_table.sql"/>
+    </changeSet>
+
+    <changeSet author="olegka35@gmail.com" id="5_create_characteristics_tables">
+        <sqlFile encoding="utf8" path="classpath:liquibase/sql/5_create_characteristics_tables.sql"/>
+    </changeSet>
 </databaseChangeLog>

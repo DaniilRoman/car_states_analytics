@@ -159,6 +159,91 @@ paths:
               schema:
                 $ref: '#/components/schemas/AccountResponse'
 
+  # *******************************************************************************
+  #                           Cars
+  # *******************************************************************************
+  /api/admin/v1/cars:
+    get:
+      summary: get all cars
+      operationId: getCars
+      tags:
+        - Car
+      responses:
+        '200':
+          description: List of cars.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CarResponse'
+
+    post:
+      summary: add new cars
+      operationId: addCars
+      tags:
+        - Car
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarListRequest'
+      responses:
+        '200':
+          description: Get specific accounts.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CarResponse'
+
+  /api/admin/v1/cars/{accountId}:
+    get:
+      summary: get cars by owner ID
+      operationId: getCarsByOwnerId
+      tags:
+        - Car
+      parameters:
+        - $ref: '#/components/parameters/accountId'
+      responses:
+        '200':
+          description: Get cars of concrete owner.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CarResponse'
+
+  /api/admin/v1/car/{carId}:
+    get:
+      summary: get car by ID
+      operationId: getCarById
+      tags:
+        - Car
+      parameters:
+        - $ref: '#/components/parameters/carId'
+      responses:
+        '200':
+          description: Get car by ID.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarResponse'
+
+    delete:
+      summary: delete car by ID
+      operationId: deleteCarById
+      tags:
+        - Car
+      parameters:
+        - $ref: '#/components/parameters/carId'
+      responses:
+        '200':
+          description: Delete car by ID.
+
 
 
 
@@ -168,6 +253,15 @@ components:
       name: accountId
       in: path
       description: Account identifier
+      required: true
+      schema:
+        type: string
+        format: uuid
+
+    carId:
+      name: carId
+      in: path
+      description: Car identifier
       required: true
       schema:
         type: string
@@ -241,7 +335,51 @@ components:
           items:
             type: string
 
+    CarListRequest:
+      type: object
+      required:
+        - cars
+      properties:
+        cars:
+          type: array
+          items:
+            type: CarRequest
 
+    CarRequest:
+      type: object
+      required:
+        - brand
+        - model
+        - owner_id
+      properties:
+        id:
+          type: string
+          format: uuid
+        brand:
+          type: string
+        model:
+          type: string
+        owner_id:
+          type: string
+          format: uuid
+
+    CarResponse:
+      type: object
+      required:
+        - id
+        - brand
+        - model
+        - owner
+      properties:
+        id:
+          type: string
+          format: uuid
+        brand:
+          type: string
+        model:
+          type: string
+        owner:
+          type: AccountResponse
 
 
   securitySchemes:
