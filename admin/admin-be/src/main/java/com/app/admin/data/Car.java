@@ -1,14 +1,15 @@
 package com.app.admin.data;
 
-
-import com.app.admin.api.model.CarRequest;
 import com.app.admin.data.user.Account;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 import java.util.UUID;
+
+import static javax.persistence.CascadeType.ALL;
 
 @Data
 @Entity(name="cars")
@@ -27,4 +28,7 @@ public class Car {
     @ManyToOne
     @JoinColumn(name="owner_id")
     private Account owner;
+
+    @OneToMany(cascade=ALL, mappedBy="car_id")
+    Set<CarParameter> parameters;
 }

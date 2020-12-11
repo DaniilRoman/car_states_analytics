@@ -22,4 +22,8 @@
     <changeSet author="olegka35@gmail.com" id="5_create_characteristics_tables">
         <sqlFile encoding="utf8" path="classpath:liquibase/sql/5_create_characteristics_tables.sql"/>
     </changeSet>
+
+    <changeSet author="olegka35@gmail.com" id="6_add_primary_key_to_car_parameters">
+        <sqlFile encoding="utf8" path="classpath:liquibase/sql/6_add_primary_key_to_car_parameters.sql"/>
+    </changeSet>
 </databaseChangeLog>

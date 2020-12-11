@@ -191,7 +191,7 @@ paths:
               $ref: '#/components/schemas/CarListRequest'
       responses:
         '200':
-          description: Get specific accounts.
+          description: Added car list.
           content:
             application/json:
               schema:
@@ -244,7 +244,54 @@ paths:
         '200':
           description: Delete car by ID.
 
+  # *******************************************************************************
+  #                           Parameters
+  # *******************************************************************************
+  /api/admin/v1/parameters:
+    get:
+      summary: get all parameters for cars
+      operationId: getParams
+      tags:
+        - Parameter
+      responses:
+        '200':
+          description: List of registered parameters.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CarParamMetaResponse'
+    post:
+      summary: Add new parameter
+      operationId: addParam
+      tags:
+        - Parameter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ParamRequest'
+      responses:
+        '200':
+          description: Added param.
+          content:
+            application/json:
+              schema:
+                $ref: CarParamMetaResponse
 
+  /api/admin/v1/parameters/{parameterId}:
+    delete:
+      summary: delete parameter by ID
+      operationId: deleteParamById
+      tags:
+        - Parameter
+      parameters:
+        - $ref: '#/components/parameters/parameterId'
+      responses:
+        '200':
+          description: Delete parameter by ID.
 
 
 components:
@@ -262,6 +309,15 @@ components:
       name: carId
       in: path
       description: Car identifier
+      required: true
+      schema:
+        type: string
+        format: uuid
+
+    parameterId:
+      name: parameterId
+      in: path
+      description: Parameter ID
       required: true
       schema:
         type: string
@@ -380,6 +436,45 @@ components:
           type: string
         owner:
           type: AccountResponse
+        parameters:
+          type: array
+          items:
+            type: CarParamResponse
+
+    CarParamResponse:
+      type: object
+      properties:
+        param_id:
+          type: string
+          format: uuid
+        param_name:
+          type: string
+        param_type:
+          type: integer
+        value:
+          type: string
+
+    CarParamMetaResponse:
+      type: object
+      properties:
+        param_id:
+          type: string
+          format: uuid
+        param_name:
+          type: string
+        param_type:
+          type: string
+
+    ParamRequest:
+      type: object
+      required:
+        - name
+        - type
+      properties:
+        name:
+          type: string
+        type:
+          type: integer
 
 
   securitySchemes:

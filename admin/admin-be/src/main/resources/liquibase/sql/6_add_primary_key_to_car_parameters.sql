@@ -1,0 +1,1 @@
+ALTER TABLE car_parameters ADD PRIMARY KEY (car_id, parameter_id)
