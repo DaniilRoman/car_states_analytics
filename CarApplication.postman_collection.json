@@ -140,7 +140,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"cars\":\r\n    [\r\n        {\r\n            \"brand\": \"Toyota\",\r\n            \"model\": \"d2w\",\r\n            \"owner_id\": \"25d9f318-e1cc-4630-8e19-11f2d8e7fbcd\"\r\n        },\r\n         {\r\n            \"brand\": \"Mazda\",\r\n            \"model\": \"test\",\r\n            \"owner_id\": \"25d9f318-e1cc-4630-8e19-11f2d8e7fbcd\"\r\n        }\r\n    ] \r\n}",
+					"raw": "{\r\n    \"cars\":\r\n    [\r\n        {\r\n            \"brand\": \"Lada\",\r\n            \"model\": \"Calina\",\r\n            \"owner_id\": \"25d9f318-e1cc-4630-8e19-11f2d8e7fbcd\"\r\n        },\r\n         {\r\n            \"brand\": \"Test\",\r\n            \"model\": \"test\",\r\n            \"owner_id\": \"25d9f318-e1cc-4630-8e19-11f2d8e7fbcd\"\r\n        }\r\n    ] \r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -213,7 +213,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:9090/api/admin/v1/car/b972e9f5-bc92-438f-8bfa-75a223e74b04",
+					"raw": "http://localhost:9090/api/admin/v1/car/df3ca353-4a4f-4ecd-8a85-bda0add6bbc9",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -224,7 +224,7 @@
 						"admin",
 						"v1",
 						"car",
-						"b972e9f5-bc92-438f-8bfa-75a223e74b04"
+						"df3ca353-4a4f-4ecd-8a85-bda0add6bbc9"
 					]
 				}
 			},
@@ -364,6 +364,94 @@
 						"v1",
 						"parameters",
 						"5e439369-57bd-47f5-81d1-5beb7dda1316"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Rewrite car parameters",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " [\r\n    {\r\n        \"param_id\": \"347aae65-2db9-495a-ae4a-7f68b37f912e\",\r\n        \"value\": \"Gold\"\r\n    },\r\n    {\r\n        \"param_id\": \"42c314a4-773b-449f-9df0-cce2e55bc95f\",\r\n        \"value\": \"2015\"\r\n    }\r\n ]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/api/admin/v1/car/df3ca353-4a4f-4ecd-8a85-bda0add6bbc9/params/rewrite",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"admin",
+						"v1",
+						"car",
+						"df3ca353-4a4f-4ecd-8a85-bda0add6bbc9",
+						"params",
+						"rewrite"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update car parameters",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " [\r\n    {\r\n        \"param_id\": \"347aae65-2db9-495a-ae4a-7f68b37f912e\",\r\n        \"value\": \"White\"\r\n    }\r\n ]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/api/admin/v1/car/df3ca353-4a4f-4ecd-8a85-bda0add6bbc9/params/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"admin",
+						"v1",
+						"car",
+						"df3ca353-4a4f-4ecd-8a85-bda0add6bbc9",
+						"params",
+						""
 					]
 				}
 			},

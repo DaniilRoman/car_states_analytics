@@ -1,10 +1,7 @@
 package com.app.admin.controller;
 
 import com.app.admin.api.CarApi;
-import com.app.admin.api.model.AccountResponse;
-import com.app.admin.api.model.CarListRequest;
-import com.app.admin.api.model.CarParamResponse;
-import com.app.admin.api.model.CarResponse;
+import com.app.admin.api.model.*;
 import com.app.admin.data.Car;
 import com.app.admin.data.CarParameter;
 import com.app.admin.data.Parameter;
@@ -12,12 +9,14 @@ import com.app.admin.data.user.Account;
 import com.app.admin.service.CarService;
 import javassist.NotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class CarController implements CarApi {
@@ -26,12 +25,7 @@ public class CarController implements CarApi {
     @Override
     public ResponseEntity<List<CarResponse>> getCars() {
         return ResponseEntity.ok().body(carService.findAll().stream()
-                .map(car -> new CarResponse()
-                        .id(car.getId())
-                        .brand(car.getBrand())
-                        .model(car.getModel())
-                        .owner(composeAccountResponse(car.getOwner()))
-                        .parameters(composeCarParamResponse(car)))
+                .map(this::composeCarResponse)
                 .collect(Collectors.toList()));
 
     }
@@ -40,11 +34,7 @@ public class CarController implements CarApi {
     public ResponseEntity<List<CarResponse>> addCars(CarListRequest carListRequest) {
         try {
             List<CarResponse> carListResponse = carService.addCars(carListRequest).stream()
-                    .map(car -> new CarResponse()
-                            .id(car.getId())
-                            .owner(composeAccountResponse(car.getOwner()))
-                            .model(car.getModel())
-                            .brand(car.getBrand()))
+                    .map(this::composeCarResponse)
                     .collect(Collectors.toList());
             return ResponseEntity.ok().body(carListResponse);
         } catch (NotFoundException e) {
@@ -62,12 +52,7 @@ public class CarController implements CarApi {
     public ResponseEntity<CarResponse> getCarById(UUID carId) {
         try {
             Car car = carService.getCarById(carId);
-            return ResponseEntity.ok().body(new CarResponse()
-                    .id(car.getId())
-                    .brand(car.getBrand())
-                    .model(car.getModel())
-                    .owner(composeAccountResponse(car.getOwner()))
-                    .parameters(composeCarParamResponse(car)));
+            return ResponseEntity.ok().body(composeCarResponse(car));
         } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
         }
@@ -76,13 +61,39 @@ public class CarController implements CarApi {
     @Override
     public ResponseEntity<List<CarResponse>> getCarsByOwnerId(UUID accountId) {
         return ResponseEntity.ok().body(carService.findCarsByOwnerId(accountId).stream()
-                .map(car -> new CarResponse()
-                        .id(car.getId())
-                        .brand(car.getBrand())
-                        .model(car.getModel())
-                        .owner(composeAccountResponse(car.getOwner()))
-                        .parameters(composeCarParamResponse(car)))
+                .map(this::composeCarResponse)
                 .collect(Collectors.toList()));
+    }
+
+    @Override
+    public ResponseEntity<CarResponse> rewriteCarParameters(UUID carId, List<CarParamRequest> carParamRequest) {
+        try {
+            Car car = carService.rewriteCarParameters(carId, carParamRequest);
+            return ResponseEntity.ok().body(composeCarResponse(car));
+        }
+        catch (NotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @Override
+    public ResponseEntity<CarResponse> updateCarParameters(UUID carId, List<CarParamRequest> carParamRequest) {
+        try {
+            Car car = carService.updateCarParameters(carId, carParamRequest);
+            return ResponseEntity.ok().body(composeCarResponse(car));
+        }
+        catch (NotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    private CarResponse composeCarResponse(Car car) {
+        return new CarResponse()
+                .id(car.getId())
+                .brand(car.getBrand())
+                .model(car.getModel())
+                .owner(composeAccountResponse(car.getOwner()))
+                .parameters(composeCarParamResponse(car));
     }
 
     private AccountResponse composeAccountResponse(Account account) {
@@ -93,6 +104,7 @@ public class CarController implements CarApi {
     }
 
     private List<CarParamResponse> composeCarParamResponse(Car car) {
+        log.info("car: {}", car);
         List<CarParamResponse> resultSet = new ArrayList<>();
         for (CarParameter parameter: car.getParameters()) {
             Parameter parameterInfo = parameter.getParameter();

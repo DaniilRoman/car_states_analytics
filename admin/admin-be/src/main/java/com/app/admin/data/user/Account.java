@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
 
@@ -36,4 +35,12 @@ public class Account extends BaseEntity {
             })
     @JsonIgnoreProperties("users")
     private Set<Role> roles = Collections.emptySet();
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "username='" + username + '\'' +
+                ", roles=" + roles +
+                '}';
+    }
 }

@@ -9,7 +9,6 @@ import javax.persistence.*;
 import java.util.Set;
 import java.util.UUID;
 
-import static javax.persistence.CascadeType.ALL;
 
 @Data
 @Entity(name="cars")
@@ -29,6 +28,6 @@ public class Car {
     @JoinColumn(name="owner_id")
     private Account owner;
 
-    @OneToMany(cascade=ALL, mappedBy="car_id")
+    @OneToMany(mappedBy = "car", orphanRemoval = true, cascade = CascadeType.ALL)
     Set<CarParameter> parameters;
 }

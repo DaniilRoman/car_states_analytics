@@ -244,6 +244,55 @@ paths:
         '200':
           description: Delete car by ID.
 
+  /api/admin/v1/car/{carId}/params:
+    put:
+      summary: Update car's parameters (add / edit)
+      operationId: updateCarParameters
+      tags:
+        - Car
+      parameters:
+        - $ref: '#/components/parameters/carId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/CarParamRequest'
+      responses:
+        '200':
+          description: Update car's parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarResponse'
+
+  /api/admin/v1/car/{carId}/params/rewrite:
+    put:
+      summary: Rewrite car's parameters
+      operationId: rewriteCarParameters
+      tags:
+        - Car
+      parameters:
+        - $ref: '#/components/parameters/carId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/CarParamRequest'
+      responses:
+        '200':
+          description: Update car's parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarResponse'
+
+
   # *******************************************************************************
   #                           Parameters
   # *******************************************************************************
@@ -475,6 +524,18 @@ components:
           type: string
         type:
           type: integer
+
+    CarParamRequest:
+      type: object
+      required:
+        - param_id
+        - value
+      properties:
+        param_id:
+          type: string
+          format: uuid
+        value:
+          type: string
 
 
   securitySchemes:

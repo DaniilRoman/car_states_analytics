@@ -23,5 +23,12 @@ public class Role extends BaseEntity {
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
     @JsonIgnoreProperties("roles")
     private List<Account> users;
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "name=" + name +
+                '}';
+    }
 }
 

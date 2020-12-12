@@ -1,15 +1,14 @@
 package com.app.admin.data;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @Entity(name="parameters")
 @NoArgsConstructor
 @AllArgsConstructor
