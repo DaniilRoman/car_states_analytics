@@ -1,5 +1,6 @@
-package com.app.admin.data;
+package com.app.admin.data.car;
 
+import com.app.admin.data.characteristics.Parameter;
 import lombok.*;
 
 import javax.persistence.*;

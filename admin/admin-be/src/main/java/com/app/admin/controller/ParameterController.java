@@ -3,7 +3,7 @@ package com.app.admin.controller;
 import com.app.admin.api.ParameterApi;
 import com.app.admin.api.model.CarParamMetaResponse;
 import com.app.admin.api.model.ParamRequest;
-import com.app.admin.data.Parameter;
+import com.app.admin.data.characteristics.Parameter;
 import com.app.admin.service.ParameterService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

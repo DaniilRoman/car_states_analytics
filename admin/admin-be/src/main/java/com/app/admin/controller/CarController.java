@@ -2,9 +2,9 @@ package com.app.admin.controller;
 
 import com.app.admin.api.CarApi;
 import com.app.admin.api.model.*;
-import com.app.admin.data.Car;
-import com.app.admin.data.CarParameter;
-import com.app.admin.data.Parameter;
+import com.app.admin.data.car.Car;
+import com.app.admin.data.car.CarParameter;
+import com.app.admin.data.characteristics.Parameter;
 import com.app.admin.data.user.Account;
 import com.app.admin.service.CarService;
 import javassist.NotFoundException;
@@ -87,7 +87,7 @@ public class CarController implements CarApi {
         }
     }
 
-    private CarResponse composeCarResponse(Car car) {
+    CarResponse composeCarResponse(Car car) {
         return new CarResponse()
                 .id(car.getId())
                 .brand(car.getBrand())
@@ -96,7 +96,7 @@ public class CarController implements CarApi {
                 .parameters(composeCarParamResponse(car));
     }
 
-    private AccountResponse composeAccountResponse(Account account) {
+    AccountResponse composeAccountResponse(Account account) {
         AccountResponse accountResponse = new AccountResponse();
         accountResponse.setId(account.getId());
         accountResponse.setUsername(account.getUsername());
@@ -104,7 +104,6 @@ public class CarController implements CarApi {
     }
 
     private List<CarParamResponse> composeCarParamResponse(Car car) {
-        log.info("car: {}", car);
         List<CarParamResponse> resultSet = new ArrayList<>();
         for (CarParameter parameter: car.getParameters()) {
             Parameter parameterInfo = parameter.getParameter();

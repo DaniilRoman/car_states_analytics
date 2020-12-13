@@ -1,4 +1,4 @@
-package com.app.admin.data;
+package com.app.admin.data.car;
 
 import lombok.*;
 

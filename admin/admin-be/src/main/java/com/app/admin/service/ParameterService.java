@@ -1,7 +1,7 @@
 package com.app.admin.service;
 
 import com.app.admin.api.model.ParamRequest;
-import com.app.admin.data.Parameter;
+import com.app.admin.data.characteristics.Parameter;
 import com.app.admin.repository.ParameterRepository;
 import javassist.NotFoundException;
 import lombok.RequiredArgsConstructor;

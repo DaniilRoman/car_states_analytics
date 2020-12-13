@@ -1,4 +1,4 @@
-package com.app.admin.data;
+package com.app.admin.data.car;
 
 import com.app.admin.data.user.Account;
 import lombok.AllArgsConstructor;

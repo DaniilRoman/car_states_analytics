@@ -456,6 +456,204 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Add car route",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get car route by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/api/admin/v1/route/938f0182-3b9f-4ba2-b2e1-aa280be0ac42",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"admin",
+						"v1",
+						"route",
+						"938f0182-3b9f-4ba2-b2e1-aa280be0ac42"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete car route by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/api/admin/v1/route/938f0182-3b9f-4ba2-b2e1-aa280be0ac42",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"admin",
+						"v1",
+						"route",
+						"938f0182-3b9f-4ba2-b2e1-aa280be0ac42"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get car routes by car Id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/api/admin/v1/route/car/c1a7e568-db8c-43b3-888b-2f8496824a00",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"admin",
+						"v1",
+						"route",
+						"car",
+						"c1a7e568-db8c-43b3-888b-2f8496824a00"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create car route mark",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/api/admin/v1/route/c1a7e568-db8c-43b3-888b-2f8496824a00/mark",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"admin",
+						"v1",
+						"route",
+						"c1a7e568-db8c-43b3-888b-2f8496824a00",
+						"mark"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete car route mark",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/api/admin/v1/route/mark/3b0b2087-e955-47a7-8b27-d7e73a71d7ca",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"admin",
+						"v1",
+						"route",
+						"mark",
+						"3b0b2087-e955-47a7-8b27-d7e73a71d7ca"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}

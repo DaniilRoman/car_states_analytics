@@ -26,4 +26,8 @@
     <changeSet author="olegka35@gmail.com" id="6_add_primary_key_to_car_parameters">
         <sqlFile encoding="utf8" path="classpath:liquibase/sql/6_add_primary_key_to_car_parameters.sql"/>
     </changeSet>
+
+    <changeSet author="olegka35@gmail.com" id="7_add_car_road_track_tables">
+        <sqlFile encoding="utf8" path="classpath:liquibase/sql/7_add_car_road_track_tables.sql"/>
+    </changeSet>
 </databaseChangeLog>

@@ -342,6 +342,108 @@ paths:
         '200':
           description: Delete parameter by ID.
 
+  # *******************************************************************************
+  #                           Car Route Tracking
+  # *******************************************************************************
+  /api/admin/v1/route:
+    post:
+      summary: Add new route
+      operationId: addCarRoute
+      tags:
+        - Route
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarRouteRequest'
+      responses:
+        '200':
+          description: Added param.
+          content:
+            application/json:
+              schema:
+                $ref: CarRouteResponse
+
+  /api/admin/v1/route/{routeId}:
+    get:
+      summary: Get car route by Id
+      operationId: getCarRouteById
+      tags:
+        - Route
+      parameters:
+        - $ref: '#/components/parameters/routeId'
+      responses:
+        '200':
+          description: Car route by identifier.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarRouteResponse'
+    delete:
+      summary: Delete car route by ID
+      operationId: deleteCarRouteById
+      tags:
+        - Route
+      parameters:
+        - $ref: '#/components/parameters/routeId'
+      responses:
+        '200':
+          description: Deleted car route.
+
+  /api/admin/v1/route/car/{carId}:
+    get:
+      summary: Get car routes by car Id
+      operationId: getRoutesByCarId
+      tags:
+        - Route
+      parameters:
+        - $ref: '#/components/parameters/carId'
+      responses:
+        '200':
+          description: List of car routes.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CarRouteResponse'
+
+  /api/admin/v1/route/{routeId}/mark:
+    post:
+      summary: Add route mark
+      operationId: addCarRouteMark
+      tags:
+        - Route
+      parameters:
+        - $ref: '#/components/parameters/routeId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarRouteMarkRequest'
+      responses:
+        '200':
+          description: Added car route mark.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarRouteMarkResponse'
+
+  /api/admin/v1/route/mark/{routeMarkId}:
+    delete:
+      summary: Delete car route mark by ID
+      operationId: deleteCarRouteMarkById
+      tags:
+        - Route
+      parameters:
+        - $ref: '#/components/parameters/routeMarkId'
+      responses:
+        '200':
+          description: Deleted car route mark.
+
+
 
 components:
   parameters:
@@ -372,6 +474,23 @@ components:
         type: string
         format: uuid
 
+    routeId:
+      name: routeId
+      in: path
+      description: Car Route ID
+      required: true
+      schema:
+        type: string
+        format: uuid
+
+    routeMarkId:
+      name: routeMarkId
+      in: path
+      description: Route Mark ID
+      required: true
+      schema:
+        type: string
+        format: uuid
 
 
   schemas:
@@ -536,6 +655,99 @@ components:
           format: uuid
         value:
           type: string
+
+    CarRouteRequest:
+      type: object
+      required:
+        - car_id
+        - user_id
+        - date
+      properties:
+        car_id:
+          type: string
+          format: uuid
+        user_id:
+          type: string
+          format: uuid
+        date:
+          type: string
+          format: date-time
+
+    CarRouteResponse:
+      type: object
+      required:
+        - route_id
+        - car
+        - user
+        - date
+      properties:
+        route_id:
+          type: string
+          format: uuid
+        car:
+          type: CarResponse
+        user:
+          type: AccountResponse
+        date:
+          type: string
+          format: date-time
+        marks:
+          type: array
+          items:
+            type: CarRouteMarkResponse
+
+    CarRouteMarkRequest:
+      type: object
+      required:
+        - time_mark
+        - x
+        - y
+        - z
+        - speed
+        - oil
+      properties:
+        time_mark:
+          type: string
+          format: date-time
+        x:
+          type: string
+        y:
+          type: string
+        z:
+          type: string
+        speed:
+          type: float
+        oil:
+          type: float
+
+    CarRouteMarkResponse:
+      type: object
+      required:
+        - mark_id
+        - time_mark
+        - x
+        - y
+        - z
+        - speed
+        - oil
+      properties:
+        mark_id:
+          type: string
+          format: uuid
+        time_mark:
+          type: string
+          format: date-time
+        x:
+          type: string
+        y:
+          type: string
+        z:
+          type: string
+        speed:
+          type: float
+        oil:
+          type: float
+
 
 
   securitySchemes:
