@@ -1,1 +1,1 @@
-openapi-generator-cli generate -i ../admin/admin-be/src/main/resources/spec/admin.yml -g javascript -o ./client/admin
+openapi-generator-cli generate -i ../admin/admin-be/src/main/resources/spec/admin.yml -g typescript-axios -o ./client/admin

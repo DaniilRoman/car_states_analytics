@@ -2,13 +2,11 @@ package com.app.admin.controller;
 
 import com.app.admin.api.RouteApi;
 import com.app.admin.api.model.*;
-import com.app.admin.data.car.Car;
 import com.app.admin.data.road_track.CarRoute;
 import com.app.admin.data.road_track.RouteTrackMark;
 import com.app.admin.service.RouteService;
 import javassist.NotFoundException;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +15,6 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class RouteController implements RouteApi {
