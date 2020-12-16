@@ -1,4 +1,4 @@
-# admin-front
+# tsvue-todo-app
 
 ## Project setup
 ```

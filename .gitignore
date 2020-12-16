@@ -1,6 +1,6 @@
 **/src/main/**/target/
 **/.idea/
-**/client/
+**/client/admin/
 **/node_modules/
 **/venv/
 **/.mvn
