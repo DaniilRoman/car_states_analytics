@@ -6,7 +6,6 @@ import com.app.admin.api.model.ParamRequest;
 import com.app.admin.data.characteristics.Parameter;
 import com.app.admin.service.ParameterService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,7 +13,6 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class ParameterController implements ParameterApi {
