@@ -1,23 +1,41 @@
 <template>
-  <div class="home">
-    <b-jumbotron>
+  <div class="login">
+    <div class="login-form">
+      <div title="Login" style="max-width: 20rem;" class="mb-2">
+        <div>
+          <input v-model="username" />
+          <div class="mt-2"></div>
 
-      <img alt="Vue logo" src="../assets/logo.png">
-      <h1>Home</h1>
-      <!--    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>-->
+          <input v-model="password" />
+          <div class="mt-2"></div>
+        </div>
 
-    </b-jumbotron>
+        <button v-on:click="_signUp" >SignUp</button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import {defineComponent} from 'vue'
+import {useStore} from "vuex";
 
-@Options({
-  components: {
-    HelloWorld,
+export default defineComponent({
+  name: "SignUp",
+  data() {
+    return {
+      username: "",
+      password: ""
+    };
   },
+  methods: {
+    _signUp() {
+      const store = useStore()
+      store.dispatch("signUp", { username: this.username, password: this.password })
+    }
+  }
 })
-export default class SignUp extends Vue {}
 </script>
+
+<style scoped>
+</style>

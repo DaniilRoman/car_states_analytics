@@ -15,7 +15,7 @@ export default {
     mutations: {
         login(state: AccountState, tokenRes: TokenResponse) {
             state.currentUserId = tokenRes.accountId
-            state.token = tokenRes.token
+            state.token = "Bearer "+tokenRes.token
             state.username = tokenRes.username
             const adminRole = tokenRes.authorities.find(auth => auth === 'ROLE_ADMIN')
             if (adminRole == undefined) {
@@ -23,6 +23,12 @@ export default {
             } else {
                 state.role = 'ROLE_ADMIN'
             }
+        },
+        logout(state: AccountState) {
+            state.currentUserId = ""
+            state.token = ""
+            state.username = ""
+            state.role = ""
         }
     },
     actions: {

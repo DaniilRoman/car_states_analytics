@@ -20,7 +20,6 @@
 import {defineComponent, ref} from 'vue'
 import {useStore, mapGetters, mapState, mapActions} from "vuex";
 import Route from "@/components/Route.vue";
-const store = useStore()
 
 export default defineComponent({
   components: {
@@ -36,7 +35,12 @@ export default defineComponent({
   },
 
   mounted() {
-    store.dispatch("fetchRoutes")
+    const store = useStore()
+    store.dispatch("signUp", { username: 115, password: 112 })
+    setTimeout(() => {
+      setTimeout(() => store.dispatch("fetchUserCar"), 1000)
+      store.dispatch("fetchRoutes")
+    }, 1000)
   },
 
   setup() {

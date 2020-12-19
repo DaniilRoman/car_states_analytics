@@ -16,7 +16,7 @@ export default {
     },
     actions: {
         fetchRoutes(context: any) {
-            routeApi.getRoutesByCarId(context.rootState.CarStore.currentCarId)
+            routeApi.getRoutesByCarId(context.rootState.CarStore.currentUserCar.id)
             // new Promise<Array<CarRouteResponse>>((resolve, reject)=>{
             //     eslint-disable-next-line @typescript-eslint/camelcase
             //     resolve([{"route_id": "1"}, {"route_id": "2"}])
