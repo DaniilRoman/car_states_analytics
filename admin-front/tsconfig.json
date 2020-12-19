@@ -34,6 +34,9 @@
     "tests/**/*.ts",
     "tests/**/*.tsx"
   ],
+  "files": [
+    "./src/shims-vue.d.ts"
+  ],
   "exclude": [
     "node_modules"
   ]
