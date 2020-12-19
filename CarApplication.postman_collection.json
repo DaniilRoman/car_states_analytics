@@ -213,7 +213,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:9090/api/admin/v1/car/df3ca353-4a4f-4ecd-8a85-bda0add6bbc9",
+					"raw": "http://localhost:9090/api/admin/v1/car/c1a7e568-db8c-43b3-888b-2f8496824a00",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -224,7 +224,7 @@
 						"admin",
 						"v1",
 						"car",
-						"df3ca353-4a4f-4ecd-8a85-bda0add6bbc9"
+						"c1a7e568-db8c-43b3-888b-2f8496824a00"
 					]
 				}
 			},
@@ -430,7 +430,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": " [\r\n    {\r\n        \"param_id\": \"347aae65-2db9-495a-ae4a-7f68b37f912e\",\r\n        \"value\": \"White\"\r\n    }\r\n ]",
+					"raw": " [\r\n    {\r\n        \"param_id\": \"1c1d293c-66e2-4e69-b005-9f7f28a0681a\",\r\n        \"value\": \"240.0\"\r\n    },\r\n    {\r\n        \"param_id\": \"4ba2c8dd-7706-4e10-afda-6358d7b712b0\",\r\n        \"value\": \"280.0\"\r\n    },\r\n    {\r\n        \"param_id\": \"42c314a4-773b-449f-9df0-cce2e55bc95f\",\r\n        \"value\": \"2017\"\r\n    }\r\n ]",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -472,8 +472,28 @@
 				},
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"New route\",\r\n    \"user_id\": \"25d9f318-e1cc-4630-8e19-11f2d8e7fbcd\",\r\n    \"car_id\": \"c1a7e568-db8c-43b3-888b-2f8496824a00\",\r\n    \"date\": \"2020-12-18T19:00:00.000+03:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:9090/api/admin/v1/route",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"admin",
+						"v1",
+						"route"
+					]
 				}
 			},
 			"response": []
@@ -494,7 +514,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:9090/api/admin/v1/route/938f0182-3b9f-4ba2-b2e1-aa280be0ac42",
+					"raw": "http://localhost:9090/api/admin/v1/route/c310bd41-7525-4240-8efd-3e0517a87de6",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -505,7 +525,7 @@
 						"admin",
 						"v1",
 						"route",
-						"938f0182-3b9f-4ba2-b2e1-aa280be0ac42"
+						"c310bd41-7525-4240-8efd-3e0517a87de6"
 					]
 				}
 			},
@@ -527,7 +547,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:9090/api/admin/v1/route/938f0182-3b9f-4ba2-b2e1-aa280be0ac42",
+					"raw": "http://localhost:9090/api/admin/v1/route/a492f3ec-1063-49d7-bd5b-a59353928ae2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -538,7 +558,7 @@
 						"admin",
 						"v1",
 						"route",
-						"938f0182-3b9f-4ba2-b2e1-aa280be0ac42"
+						"a492f3ec-1063-49d7-bd5b-a59353928ae2"
 					]
 				}
 			},
@@ -595,7 +615,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "",
+					"raw": "{\r\n    \"time_mark\": \"2020-12-16T21:00:00.000+03:00\",\r\n    \"x\": \"1\",\r\n    \"y\": \"2\",\r\n    \"z\": \"3\",\r\n    \"speed\": 62.6,\r\n    \"oil\": 10.0   \r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -603,7 +623,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:9090/api/admin/v1/route/c1a7e568-db8c-43b3-888b-2f8496824a00/mark",
+					"raw": "http://localhost:9090/api/admin/v1/route/c310bd41-7525-4240-8efd-3e0517a87de6/mark",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -614,7 +634,7 @@
 						"admin",
 						"v1",
 						"route",
-						"c1a7e568-db8c-43b3-888b-2f8496824a00",
+						"c310bd41-7525-4240-8efd-3e0517a87de6",
 						"mark"
 					]
 				}

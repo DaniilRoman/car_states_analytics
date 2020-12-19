@@ -74,10 +74,10 @@ public class RouteController implements RouteApi {
     private CarRouteResponse composeCarRouteResponse(CarRoute carRoute) {
         return new CarRouteResponse()
                 .routeId(carRoute.getId())
+                .name(carRoute.getName())
                 .car(carController.composeCarResponse(carRoute.getCar()))
                 .date(carRoute.getCreated().toInstant().atOffset(ZoneOffset.UTC))
-                .user(carController.composeAccountResponse(carRoute.getUser()))
-                .marks(composeCarRouteMarkResponseList(carRoute.getTrack()));
+                .user(carController.composeAccountResponse(carRoute.getUser()));
     }
 
     private CarRouteMarkResponse composeCarRouteMarkResponse(RouteTrackMark routeTrackMark) {

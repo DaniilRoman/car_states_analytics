@@ -1,0 +1,2 @@
+ALTER TABLE car_route
+  ADD COLUMN name VARCHAR(32);

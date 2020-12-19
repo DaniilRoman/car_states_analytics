@@ -659,10 +659,13 @@ components:
     CarRouteRequest:
       type: object
       required:
+        - name
         - car_id
         - user_id
         - date
       properties:
+        name:
+          type: string
         car_id:
           type: string
           format: uuid
@@ -677,6 +680,7 @@ components:
       type: object
       required:
         - route_id
+        - name
         - car
         - user
         - date
@@ -684,6 +688,8 @@ components:
         route_id:
           type: string
           format: uuid
+        name:
+          type: string
         car:
           type: CarResponse
         user:
@@ -691,10 +697,6 @@ components:
         date:
           type: string
           format: date-time
-        marks:
-          type: array
-          items:
-            type: CarRouteMarkResponse
 
     CarRouteMarkRequest:
       type: object

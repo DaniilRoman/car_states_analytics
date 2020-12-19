@@ -27,6 +27,7 @@ public class RouteService {
 
     public CarRoute addCarRoute(CarRouteRequest carRouteRequest) throws NotFoundException {
         CarRoute carRoute = new CarRoute();
+        carRoute.setName(carRouteRequest.getName());
         carRoute.setCreated(carRouteRequest.getDate());
         carRoute.setCar(carService.getCarById(carRouteRequest.getCarId()));
         carRoute.setUser(accountService.findById(carRouteRequest.getUserId()));

@@ -21,6 +21,8 @@ public class CarRoute {
     @GeneratedValue(generator = "UUID")
     private UUID id;
 
+    private String name;
+
     @ManyToOne
     @JoinColumn(name="car_id")
     private Car car;
