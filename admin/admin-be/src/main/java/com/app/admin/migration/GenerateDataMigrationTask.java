@@ -44,16 +44,21 @@ public class GenerateDataMigrationTask implements CustomTaskChange {
 
         String accountString = getAccountString(accountId, username, isAdmin);
         String carString = getCarString(carId, accountId);
-        String routeString = getRouteString(carId, accountId);
 
-        return accountString + carString + routeString;
+        StringBuilder finalInsert = new StringBuilder(accountString + carString);
+
+        for (int i = 0; i < getRandom(5, 10); i++) {
+            finalInsert.append(getRouteString(carId, accountId));
+        }
+
+        return  finalInsert.toString();
     }
 
     private String getRouteString(String carId, String userId) {
         String id = UUID.randomUUID().toString();
-        String routeName = getRandomEl(new String[]{ "Moscow - NN", "Kazan - Spb", "Omsk - Samara", "Saratov - Volgograd" });
+        String routeName = getRandomEl(new String[]{ "Moscow - NN", "Kazan - Spb", "Omsk - Samara", "Saratov - Volgograd", "Kaliningrad - Minsk" });
 
-        String routeStr = String.format("INSERT INTO car_route VALUES ('%s','%s','%s','%s');",
+        String routeStr = String.format("INSERT INTO car_route VALUES ('%s','%s','%s','%s', '%s');",
                 id, carId, userId, "2020-12-20", routeName);
         String routeMarks = getRouteMarks(id);
 
