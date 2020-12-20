@@ -10,7 +10,7 @@
           <div class="mt-2"></div>
         </div>
 
-        <button v-on:click="_login" >Login</button>
+        <button v-on:click="_login(username, password)" >Login</button>
       </div>
     </div>
   </div>
@@ -20,7 +20,7 @@
 import {defineComponent} from 'vue'
 import {useStore} from "vuex";
 
-export default defineComponent({
+export default {
   name: "Login",
   data() {
     return {
@@ -28,13 +28,15 @@ export default defineComponent({
       password: ""
     };
   },
-  methods: {
-    _login() {
-      const store = useStore()
-      store.dispatch("login", { username: this.username, password: this.password })
+  setup() {
+    const store = useStore()
+
+    const _login = (username: any, password: any) => {
+      store.dispatch("login", { username: username, password: password })
     }
+    return { _login }
   }
-})
+}
 </script>
 
 <style scoped>

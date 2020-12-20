@@ -40,7 +40,12 @@ export default {
 
         login(context: any, user: AccountRequest) {
             accountApi.login(user)
-                .then(res => context.commit("login", res.data))
+                .then(res => {
+                    context.commit("login", res.data)
+                    if (!context.getters.isAdmin) {
+                        context.dispatch("fetchUserCar")
+                    }
+                })
                 .catch(ex => console.log("Login failed. \n"+ex))
         }
     },

@@ -1,12 +1,12 @@
 <template>
   <div id="app">
     <b-navbar style="width: 100%" type="dark" variant="dark">
-      <b-navbar-brand id="nav-brand" ></b-navbar-brand>
-      <router-link to="/">      <img height="30px" src="./assets/notebook-logo.png" alt="Notebook" v-if="!isAuthenticated"/>Home</router-link> |
-      <router-link to="/routes"><img height="30px" src="./assets/notebook-logo.png" alt="Notebook" v-if="isAuthenticated" />Routes</router-link> |
-      <router-link to="/admin" v-if="isAuthenticated && isAdmin">Admin</router-link> |
-      <router-link to="/signup" v-if="!isAuthenticated">SignUp</router-link> |
-      <router-link to="/login" v-if="!isAuthenticated">Login</router-link> |
+<!--      <b-navbar-brand id="nav-brand" ></b-navbar-brand>-->
+      <router-link to="/">      <img height="30px" src="./assets/notebook-logo.png" alt="Notebook" v-if="!isAuthenticated"/>Home | </router-link>
+      <router-link to="/routes" v-if="isAuthenticated" >Routes | </router-link>
+      <router-link to="/admin" v-if="isAuthenticated && isAdmin">Admin | </router-link>
+      <router-link to="/signup" v-if="!isAuthenticated">SignUp | </router-link>
+      <router-link to="/login" v-if="!isAuthenticated">Login | </router-link>
       <a href="/" class="nav-link text-light" v-if="isAuthenticated" v-on:click="logout">Logout</a>
     </b-navbar>
     <router-view/>

@@ -36,11 +36,13 @@ export default defineComponent({
 
   mounted() {
     const store = useStore()
-    store.dispatch("signUp", { username: 115, password: 112 })
-    setTimeout(() => {
-      setTimeout(() => store.dispatch("fetchUserCar"), 1000)
-      store.dispatch("fetchRoutes")
-    }, 1000)
+    // store.dispatch("signUp", { username: 115, password: 112 })
+    // setTimeout(() => {
+    //   setTimeout(() => store.dispatch("fetchUserCar"), 1000)
+    //   store.dispatch("fetchRoutes")
+    // }, 1000)
+
+    store.dispatch("fetchRoutes")
   },
 
   setup() {
