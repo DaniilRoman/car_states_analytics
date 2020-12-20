@@ -2,13 +2,12 @@ import {AccountRequest, AccountResponse, TokenResponse} from "@/client/admin";
 import {accountApi} from "@/main";
 
 
-export type AccountState = { token: string; testAcc: string; currentUserId: string; role: string; username: string };
+export type AccountState = { token: string; currentUserId: string; role: string; username: string };
 
 export default {
     state: {
         token: "",
         currentUserId: "",
-        testAcc: "teeeest aaac",
         role: "",
         username: ""
     } as AccountState,

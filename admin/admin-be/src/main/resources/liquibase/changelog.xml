@@ -34,4 +34,8 @@
     <changeSet author="olegka35@gmail.com" id="8_add_route_name_column">
         <sqlFile encoding="utf8" path="classpath:liquibase/sql/8_add_route_name_column.sql"/>
     </changeSet>
+
+    <changeSet author="danroman17397@gmail.com" id="9_generate_data">
+        <customChange class="com.app.admin.migration.GenerateDataMigrationTask"/>
+    </changeSet>
 </databaseChangeLog>
