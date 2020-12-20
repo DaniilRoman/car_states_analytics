@@ -443,6 +443,25 @@ paths:
         '200':
           description: Deleted car route mark.
 
+  /api/admin/v1/route/stats/{carId}/{accountId}:
+    get:
+      summary: Get routes statistic
+      operationId: getRoutesStats
+      tags:
+        - Route
+      parameters:
+        - $ref: '#/components/parameters/carId'
+        - $ref: '#/components/parameters/accountId'
+      responses:
+        '200':
+          description: List of car routes with statistic.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CarRouteStatsResponse'
+
 
 
 components:
@@ -750,7 +769,20 @@ components:
         oil:
           type: float
 
-
+    CarRouteStatsResponse:
+      type: object
+      required:
+        - route_id
+        - avg_speed
+        - avg_oil
+      properties:
+        route_id:
+          type: string
+          format: uuid
+        avg_speed:
+          type: double
+        avg_oil:
+          type: double
 
   securitySchemes:
     bearerAuth:

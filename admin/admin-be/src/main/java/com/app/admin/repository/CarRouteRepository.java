@@ -1,6 +1,5 @@
 package com.app.admin.repository;
 
-import com.app.admin.data.car.Car;
 import com.app.admin.data.road_track.CarRoute;
 import org.springframework.data.jpa.repository.JpaRepository;
 

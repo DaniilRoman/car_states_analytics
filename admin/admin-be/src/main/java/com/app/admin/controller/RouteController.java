@@ -71,6 +71,17 @@ public class RouteController implements RouteApi {
         return ResponseEntity.ok().build();
     }
 
+    @Override
+    public ResponseEntity<List<CarRouteStatsResponse>> getRoutesStats(UUID carId, UUID accountId) {
+        return ResponseEntity.ok().body(routeService.getCarRoutesStats(carId, accountId)
+                .stream()
+                .map(map -> new CarRouteStatsResponse()
+                        .routeId((UUID) map.get("route_id"))
+                        .avgOil((Double) map.get("avg_oil"))
+                        .avgSpeed((Double) map.get("avg_speed")))
+                .collect(Collectors.toList()));
+    }
+
     private CarRouteResponse composeCarRouteResponse(CarRoute carRoute) {
         return new CarRouteResponse()
                 .routeId(carRoute.getId())

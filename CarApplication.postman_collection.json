@@ -43,7 +43,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d39f8095-14c6-4218-bf19-252ddf71fce4",
 						"exec": [
 							"pm.environment.set(\"token\", pm.response.json().token);"
 						],
@@ -674,7 +673,41 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Get route stats",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/api/admin/v1/route/stats/c1a7e568-db8c-43b3-888b-2f8496824a00/25d9f318-e1cc-4630-8e19-11f2d8e7fbcd",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"admin",
+						"v1",
+						"route",
+						"stats",
+						"c1a7e568-db8c-43b3-888b-2f8496824a00",
+						"25d9f318-e1cc-4630-8e19-11f2d8e7fbcd"
+					]
+				}
+			},
+			"response": []
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
