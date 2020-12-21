@@ -1,5 +1,6 @@
-import {AccountRequest, AccountResponse, TokenResponse} from "@/client/admin";
+import {AccountRequest, TokenResponse} from "@/client/admin";
 import {accountApi} from "@/main";
+import router from "@/router";
 
 
 export type AccountState = { token: string; currentUserId: string; role: string; username: string };
@@ -42,7 +43,9 @@ export default {
                 .then(res => {
                     context.commit("login", res.data)
                     if (!context.getters.isAdmin) {
-                        context.dispatch("fetchUserCar")
+                        context.dispatch("fetchUserCar").then(() => router.push("/routes"))
+                    } else {
+                        context.dispatch("fetchCars").then(() => router.push("/cars"))
                     }
                 })
                 .catch(ex => console.log("Login failed. \n"+ex))
@@ -54,6 +57,9 @@ export default {
         },
         isAdmin(state: AccountState) {
             return state.role == "ROLE_ADMIN"
+        },
+        getToken(state: AccountState) {
+            return state.token
         }
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.DecimalFormat;
 import java.time.ZoneOffset;
 import java.util.List;
 import java.util.UUID;
@@ -22,6 +23,7 @@ public class RouteController implements RouteApi {
 
     private final CarController carController;
     private final RouteService routeService;
+    DecimalFormat df = new DecimalFormat("#.##");
 
     @Override
     @PreAuthorize("hasRole('ADMIN')")
@@ -82,8 +84,8 @@ public class RouteController implements RouteApi {
                 .stream()
                 .map(map -> new CarRouteStatsResponse()
                         .routeId((UUID) map.get("route_id"))
-                        .avgOil((Double) map.get("avg_oil"))
-                        .avgSpeed((Double) map.get("avg_speed")))
+                        .avgOil(Double.valueOf(df.format(map.get("avg_oil"))))
+                        .avgSpeed(Double.valueOf(df.format(map.get("avg_speed")))))
                 .collect(Collectors.toList()));
     }
 

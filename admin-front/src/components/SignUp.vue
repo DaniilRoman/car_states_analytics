@@ -3,14 +3,14 @@
     <div class="login-form">
       <div title="Login" style="max-width: 20rem;" class="mb-2">
         <div>
-          <input v-model="username" />
+          <el-input class="custom_input" v-model="username" />
           <div class="mt-2"></div>
 
-          <input v-model="password" />
+          <el-input class="custom_input" v-model="password" show-password/>
           <div class="mt-2"></div>
         </div>
 
-        <button @click="_signUp(username, password)" >SignUp</button>
+        <el-button @click="_signUp(username, password)" >SignUp</el-button>
       </div>
     </div>
   </div>
@@ -43,4 +43,14 @@ import {useStore} from "vuex";
 </script>
 
 <style scoped>
+.login-form {
+  margin-left: 38%;
+  margin-top: 50px;
+}
+.login-btn {
+  margin-top: 10px;
+}
+.custom_input {
+  margin-bottom: 5px;
+}
 </style>

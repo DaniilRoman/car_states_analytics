@@ -4,6 +4,7 @@ import Routes from "@/components/Routes.vue";
 import Login from "@/components/Login.vue";
 import SignUp from "@/components/SignUp.vue";
 import NotFound from "@/views/NotFound.vue"
+import Cars from "@/components/Cars.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -23,6 +24,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/routes',
     name: 'Routes',
     component: Routes
+  },
+  {
+    path: '/cars',
+    name: 'Cars',
+    component: Cars
   },
   {
     path: '/login',

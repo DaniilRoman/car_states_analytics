@@ -1,46 +1,43 @@
 <template>
   <div class="routes">
     <div class="routes">
-      <div class="routes" v-for="route in routes" :key="route.route_id">
-        <Route :route="route"/>
+      <div class="cars" v-for="car in cars" :key="car.id">
+        <Car :car="car"/>
       </div>
     </div>
   </div>
 
   <div>
-    <!--      <b-icon v-b-modal.create-note-modal class="add-icon" icon="plus-square">-->
-    <!--      </b-icon>-->
+<!--    <icon v-b-modal.create-note-modal class="add-icon" icon="plus-square">-->
+<!--    </icon>-->
   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue'
-import {useStore, mapGetters, mapState} from "vuex";
-import Route from "@/components/Route.vue";
+import {useStore, mapState} from "vuex";
+import Car from "@/components/Car.vue";
 
 export default defineComponent({
   components: {
-    Route
+    Car
   },
 
   computed: {
     ...mapState({
-      routes: (state: any) => state.RouteStore.routes
+      cars: (state: any) => state.CarStore.cars
     })
   },
 
   mounted() {
     const store = useStore()
-    store.dispatch("fetchRoutes")
+    store.dispatch("fetchCars")
   },
 
   setup() {
-    // const store = useStore()
-    // const routes: Array<CarRouteResponse> = ref(store.state.routes)
-
     return {}
   },
-  name: "Routes"
+  name: "Cars"
 })
 </script>
 

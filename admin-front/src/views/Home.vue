@@ -1,12 +1,8 @@
 <template>
   <div class="home">
-    <b-jumbotron>
+      <h1>Le go staing</h1>
+      <img width="700" alt="Vue logo" src="https://media.giphy.com/media/NN90tlxL6gmsvaPOIt/giphy.gif">
 
-      <img alt="Vue logo" src="../assets/logo.png">
-      <h1>Home</h1>
-      <!--    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>-->
-
-    </b-jumbotron>
   </div>
 </template>
 

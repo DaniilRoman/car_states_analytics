@@ -2,38 +2,32 @@
   <div class="card shadow">
     <div class="content">
       <div class="tmp_row">
-        <div class="title">{{ route.name }}</div>
-<!--        <div></div>-->
-        <i class="el-icon-close"></i>
+        <div class="title">{{ car.brand }}</div>
+        <div></div>
       </div>
       <div class="tmp_row">
-        <div class="text">{{ route.date }}</div>
+        <div class="text">{{ car.model }}</div>
         <div></div>
       </div>
     </div>
-    <div class="column">
-      <div class="column-item">
+    <div class="row">
+      <div class="row-item" v-on:click="deleteNote(notebook.id)">
 <!--        <b-icon class="delete-icon" icon="trash-fill"></b-icon>-->
-        Speed: {{getStats(route.route_id)?.avgSpeed}}
+        <div>{{car.owner.username}}</div>
       </div>
-      <div class="column-item">
-        Oil: {{getStats(route.route_id)?.avgOil}}
-<!--        <b-icon class="edit-icon" icon="pencil-square"></b-icon>-->
-      </div>
+<!--      <div class="row-item" v-on:click="editNote">-->
+<!--&lt;!&ndash;        <b-icon class="edit-icon" icon="pencil-square"></b-icon>&ndash;&gt;-->
+<!--      </div>-->
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from "vue";
-import {mapGetters} from "vuex";
 
 export default defineComponent({
-  name: "Route",
-  props: ["route"],
-  computed: {
-    ...mapGetters(["getStats"]),
-  }
+  name: "Car",
+  props: ["car"],
 })
 </script>
 
@@ -54,13 +48,13 @@ export default defineComponent({
 .shadow {
   box-shadow: 0 0 3px 0.2px rgba(46, 46, 46, 0.3);
 }
-.column {
-  text-align: right;
+.row {
   display: flex;
-  flex-direction: column;
+  flex-direction: row-reverse;
+  padding-right: 5%;
 }
-.column-item {
-  margin-bottom: 2%;
+.row-item {
+  margin-left: 2%;
 }
 .content {
   display: flex;
@@ -69,7 +63,6 @@ export default defineComponent({
 .tmp_row {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
 }
 .title {
   font-size: 16pt;

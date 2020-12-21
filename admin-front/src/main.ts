@@ -1,10 +1,10 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import store from './store'
+import store from '@/store'
 
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+import ElementPlus from 'element-plus';
+import 'element-plus/lib/theme-chalk/index.css';
 
 import { TestApi, AccountApi, CarApi, ParameterApi, RouteApi } from './client/admin';
 import axios from 'axios'
@@ -12,6 +12,7 @@ import axios from 'axios'
 createApp(App)
     .use(store)
     .use(router)
+    .use(ElementPlus)
     .mount('#app')
 
 
@@ -19,7 +20,8 @@ const BASE_PATH = "http://localhost:9090"
 
 export const AXIOS = axios.create({baseURL: BASE_PATH})
 AXIOS.interceptors.request.use(function (config) {
-    config.headers.Authorization = store.state.AccountStore.token;
+    const state: any = store.state
+    config.headers.Authorization = state.AccountStore.token;
     return config;
 });
 
