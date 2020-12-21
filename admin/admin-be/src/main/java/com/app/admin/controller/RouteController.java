@@ -8,6 +8,7 @@ import com.app.admin.service.RouteService;
 import javassist.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.ZoneOffset;
@@ -23,6 +24,7 @@ public class RouteController implements RouteApi {
     private final RouteService routeService;
 
     @Override
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<CarRouteResponse> addCarRoute(CarRouteRequest carRouteRequest) {
         try {
             CarRoute carRoute = routeService.addCarRoute(carRouteRequest);
@@ -33,6 +35,7 @@ public class RouteController implements RouteApi {
     }
 
     @Override
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteCarRouteById(UUID routeId) {
         routeService.deleteCarRouteById(routeId);
         return ResponseEntity.ok().build();
@@ -56,6 +59,7 @@ public class RouteController implements RouteApi {
     }
 
     @Override
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<CarRouteMarkResponse> addCarRouteMark(UUID routeId, CarRouteMarkRequest carRouteMarkRequest) {
         try {
             RouteTrackMark trackMark = routeService.addCarRouteMark(routeId, carRouteMarkRequest);
@@ -66,6 +70,7 @@ public class RouteController implements RouteApi {
     }
 
     @Override
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteCarRouteMarkById(UUID routeMarkId) {
         routeService.deleteCarRouteMarkById(routeMarkId);
         return ResponseEntity.ok().build();

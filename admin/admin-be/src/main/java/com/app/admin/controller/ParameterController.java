@@ -7,6 +7,7 @@ import com.app.admin.data.characteristics.Parameter;
 import com.app.admin.service.ParameterService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class ParameterController implements ParameterApi {
     private final ParameterService parameterService;
 
     @Override
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<CarParamMetaResponse> addParam(ParamRequest paramRequest) {
         Parameter newParameter = parameterService.addNewParameter(paramRequest);
         return ResponseEntity.ok().body(new CarParamMetaResponse()
@@ -39,6 +41,7 @@ public class ParameterController implements ParameterApi {
     }
 
     @Override
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteParamById(UUID parameterId) {
         parameterService.deleteParameterById(parameterId);
         return ResponseEntity.ok().build();

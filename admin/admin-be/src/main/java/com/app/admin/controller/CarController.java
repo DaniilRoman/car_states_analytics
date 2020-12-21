@@ -10,6 +10,7 @@ import com.app.admin.service.CarService;
 import javassist.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
@@ -29,6 +30,7 @@ public class CarController implements CarApi {
     }
 
     @Override
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<CarResponse>> addCars(CarListRequest carListRequest) {
         try {
             List<CarResponse> carListResponse = carService.addCars(carListRequest).stream()
@@ -41,6 +43,7 @@ public class CarController implements CarApi {
     }
 
     @Override
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteCarById(UUID carId) {
         carService.deleteCarById(carId);
         return ResponseEntity.ok().build();
@@ -57,6 +60,7 @@ public class CarController implements CarApi {
     }
 
     @Override
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<CarResponse>> getCarsByOwnerId(UUID accountId) {
         return ResponseEntity.ok().body(carService.findCarsByOwnerId(accountId).stream()
                 .map(this::composeCarResponse)
@@ -64,6 +68,7 @@ public class CarController implements CarApi {
     }
 
     @Override
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<CarResponse> rewriteCarParameters(UUID carId, List<CarParamRequest> carParamRequest) {
         try {
             Car car = carService.rewriteCarParameters(carId, carParamRequest);
@@ -75,6 +80,7 @@ public class CarController implements CarApi {
     }
 
     @Override
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<CarResponse> updateCarParameters(UUID carId, List<CarParamRequest> carParamRequest) {
         try {
             Car car = carService.updateCarParameters(carId, carParamRequest);
